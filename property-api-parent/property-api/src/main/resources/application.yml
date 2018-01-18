@@ -1,7 +1,7 @@
 info:
   app:
     name: property-api
-    description: Music Repository Api
+    description: Property Api
     version: @project.version@
 
 server:
@@ -11,6 +11,11 @@ server:
 spring:
   application:
     name: property-api
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    show-sql: true
 
 logging:
   config: classpath:logback.xml

@@ -45,4 +45,13 @@ public class Property {
     public void setValue(String value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "Property{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", value='" + value + '\'' +
+                '}';
+    }
 }

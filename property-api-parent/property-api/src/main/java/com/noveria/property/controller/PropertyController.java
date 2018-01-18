@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController()
 @CrossOrigin
 public class PropertyController {
 
@@ -40,7 +40,7 @@ public class PropertyController {
         propertyService.updateProperty(name,value);
     }
 
-    @RequestMapping(value = "/{name}/{value}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{name}/{value}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteProperty(@PathVariable String name) {
         logger.info("deleteProperty({}:{}) invoked",name);

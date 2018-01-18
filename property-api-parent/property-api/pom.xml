@@ -15,7 +15,7 @@
     <properties>
         <java.version>1.8</java.version>
         <skip.pit.test>false</skip.pit.test>
-        <pit.mutation.threshold>29</pit.mutation.threshold>
+        <pit.mutation.threshold>27</pit.mutation.threshold>
     </properties>
 
     <dependencies>
