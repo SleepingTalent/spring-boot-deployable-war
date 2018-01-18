@@ -1,0 +1,16 @@
+info:
+  app:
+    name: property-api
+    description: Music Repository Api
+    version: 1.0.0
+
+server:
+  port: 2000
+  context-path: /property-api
+
+spring:
+  application:
+    name: property-api
+
+logging:
+  config: classpath:logback-test.xml
