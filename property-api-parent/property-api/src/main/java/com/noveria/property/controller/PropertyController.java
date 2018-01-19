@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/property")
 public class PropertyController {
 
     private Logger logger = LoggerFactory.getLogger(PropertyController.class);
@@ -18,7 +19,7 @@ public class PropertyController {
     @Autowired
     PropertyService propertyService;
 
-    @RequestMapping(value = "/property/{name}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
     public String getPropertyValue(@PathVariable String name) {
         logger.info("getPropertyValue() invoked");
         Property property = propertyService.findByName(name);
@@ -26,21 +27,21 @@ public class PropertyController {
 
         return property.getValue();
     }
-    @RequestMapping(value = "/property/{name}/{value}", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/{name}/{value}", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void createProperty(@PathVariable String name, @PathVariable String value) {
         logger.info("createProperty({}:{}) invoked",name,value);
         propertyService.createProperty(name,value);
     }
 
-    @RequestMapping(value = "/property/{name}/{value}", method = RequestMethod.PUT, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/{name}/{value}", method = RequestMethod.PUT, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void updateProperty(@PathVariable String name, @PathVariable String value) {
         logger.info("updateProperty({}:{}) invoked",name,value);
         propertyService.updateProperty(name,value);
     }
 
-    @RequestMapping(value = "/property/{name}/{value}", method = RequestMethod.DELETE, produces = MediaType.TEXT_PLAIN_VALUE)
+    @RequestMapping(value = "/{name}/{value}", method = RequestMethod.DELETE, produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteProperty(@PathVariable String name) {
         logger.info("deleteProperty({}:{}) invoked",name);

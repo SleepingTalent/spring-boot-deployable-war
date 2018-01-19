@@ -2,6 +2,7 @@ package com.noveria.property.service;
 
 import com.noveria.property.model.domain.Property;
 import com.noveria.property.model.repositories.PropertyRepository;
+import com.noveria.property.service.exceptions.PropertyNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,11 @@ public class PropertyService {
     public Property findByName(String name) {
         logger.info(propertyRepository.findAll()+"");
 
-        return propertyRepository.findByName(name);
+        Property property = propertyRepository.findByName(name);
+        if (property == null){
+            throw new PropertyNotFoundException("Could not find property named: "+name);
+        }
+        return property;
     }
 
     public void createProperty(String name, String value) {
