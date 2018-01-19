@@ -8,31 +8,21 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>property-api</artifactId>
-    <name>property-api</name>
-    <packaging>war</packaging>
+    <artifactId>property-repo</artifactId>
+    <name>property-repo</name>
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>1.8</java.version>
         <skip.pit.test>false</skip.pit.test>
-        <pit.mutation.threshold>9</pit.mutation.threshold>
+        <pit.mutation.threshold>27</pit.mutation.threshold>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.noveria.ms</groupId>
-            <artifactId>property-repo</artifactId>
-            <version>${parent.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <dependency>
@@ -47,26 +37,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.6.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.6.1</version>
         </dependency>
 
         <dependency>
@@ -143,18 +115,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
         </plugins>
     </build>
 </project>

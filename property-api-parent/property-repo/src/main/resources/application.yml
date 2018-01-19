@@ -1,0 +1,15 @@
+info:
+  app:
+    name: property-repo
+    description: Property Repo
+    version: @project.version@
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    show-sql: true
+
+logging:
+  config: classpath:logback.xml
