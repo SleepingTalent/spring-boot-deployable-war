@@ -16,6 +16,7 @@
     <modules>
         <module>property-repo</module>
         <module>property-api</module>
+		<module>property-int-test</module>
     </modules>
 
     <properties>
