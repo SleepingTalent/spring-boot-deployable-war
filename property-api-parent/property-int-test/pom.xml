@@ -17,10 +17,18 @@
         <cucumber.version>1.2.2</cucumber.version>
         <cucumber.report.name>Property Api</cucumber.report.name>
 
-        <skip.acceptance.tests>true</skip.acceptance.tests>
+        <skip.acceptance.tests>false</skip.acceptance.tests>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.noveria.ms</groupId>
+            <artifactId>property-api</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>test</scope>
+            <type>war</type>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -93,7 +101,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.16</version>
+                <version>2.20.1</version>
                 <configuration>
                     <skip>${skip.acceptance.tests}</skip>
                     <failIfNoTests>true</failIfNoTests>
@@ -129,37 +137,56 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<classesDirectory>${parent.basedir}/property-api/target/classes</classesDirectory>-->
-                    <!--&lt;!&ndash;<mainClass>${parent.basedir}/property-api/target/property-api-${parent.version}.war</mainClass>&ndash;&gt;-->
-                <!--</configuration>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>pre-integration-test</id>-->
-                        <!--<configuration>-->
-                            <!--<skip>${skip.acceptance.tests}</skip>-->
-                            <!--<arguments>-->
-                                <!--<argument>&#45;&#45;server.port=2000</argument>-->
-                            <!--</arguments>-->
-                        <!--</configuration>-->
-                        <!--<goals>-->
-                            <!--<goal>start</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                    <!--<execution>-->
-                        <!--<id>post-integration-test</id>-->
-                        <!--<configuration>-->
-                            <!--<skip>${skip.acceptance.tests}</skip>-->
-                        <!--</configuration>-->
-                        <!--<goals>-->
-                            <!--<goal>stop</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <version>1.5.0</version>
+                <configuration>
+                    <container>
+                        <containerId>tomcat8x</containerId>
+                        <output>${project.build.directory}/cargo/logs/container.log</output>
+                        <artifactInstaller>
+                            <groupId>org.apache.tomcat</groupId>
+                            <artifactId>tomcat</artifactId>
+                            <version>8.5.6</version>
+                        </artifactInstaller>
+                    </container>
+                    <configuration>
+                        <type>standalone</type>
+                        <home>${project.build.directory}/apache-tomcat-${tomcat.version}</home>
+                        <properties>
+                            <cargo.servlet.port>2000</cargo.servlet.port>
+                            <cargo.logging>low</cargo.logging>
+                        </properties>
+                    </configuration>
+                    <deployables>
+                        <deployable>
+                            <groupId>com.noveria.ms</groupId>
+                            <artifactId>property-api</artifactId>
+                            <type>war</type>
+                            <properties>
+                                <context>/property-api</context>
+                            </properties>
+                        </deployable>
+                    </deployables>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-tomcat</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop-tomcat</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
