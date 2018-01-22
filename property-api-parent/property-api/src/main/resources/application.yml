@@ -9,6 +9,10 @@ server:
   context-path: /property-api
 
 spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
   application:
     name: property-api
   jpa:
