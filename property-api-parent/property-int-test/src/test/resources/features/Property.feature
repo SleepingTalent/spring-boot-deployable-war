@@ -2,27 +2,27 @@
 Feature: Property Features
 
   Scenario: Property value returns as Expected
-    Given property "nameOne" and "ValueOne" exist
-    When get property is called with "nameOne"
-    Then "valueOne" is returned
+    Given I set up data in DB using "insertproperties.sql", and rollback test data at the end using "deleteproperties.sql"
+    When get property is called with "nameFive"
+    Then "valueFive" is returned
 
-  @wip
+    @wip
   Scenario: Property value updates  as Expected
-    Given property "testName" and "testValue" exist
-    When update property is called with "testName" and "testValue1"
-    And get property is called with "testName"
-    Then "testValue1" is returned
+    Given I set up data in DB using "insertproperties.sql", and rollback test data at the end using "deleteproperties.sql"
+    When update property is called with "nameFive" and "updatedValueFive"
+    And get property is called with "nameFive"
+    Then "updatedValueFive" is returned
 
-  @wip
+      @wip
   Scenario: Property value deletes as Expected
-    Given property "testName" and "testValue" exist
-    When delete property is called with "testName"
-    And get property is called with "testName"
+    Given I set up data in DB using "insertproperties.sql", and rollback test data at the end using "deleteproperties.sql"
+    When delete property is called with "nameFive"
+    And get property is called with "nameFive"
     Then "no property found for testName" is returned
 
-  @wip
+        @wip
   Scenario: Property value creates as Expected
-    Given property "testName" and "testValue" does not exist
-    When create property is called with "testName" and "testValue"
-    And get property is called with "testName"
-    Then "testValue" is returned
+    Given I set up data in DB using "insertproperties.sql", and rollback test data at the end using "deleteproperties.sql"
+    When create property is called with "nameEleven" and "valueEleven"
+    And get property is called with "nameEleven"
+    Then "valueEleven" is returned

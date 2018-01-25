@@ -47,6 +47,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-core</artifactId>
             <version>${cucumber.version}</version>
@@ -68,6 +73,13 @@
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-spring</artifactId>
             <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.cukesalad</groupId>
+            <artifactId>CukeDBSalad</artifactId>
+            <version>1.0.3</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -157,6 +169,7 @@
                         <properties>
                             <cargo.servlet.port>2000</cargo.servlet.port>
                             <cargo.logging>low</cargo.logging>
+                            <cargo.jvmargs>-Dspring.profiles.active=${spring.profile}</cargo.jvmargs>
                         </properties>
                     </configuration>
                     <deployables>

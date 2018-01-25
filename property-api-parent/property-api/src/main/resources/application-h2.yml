@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:property-api
+    username: property-api
+    password: test
+    driver-class-name: org.h2.Driver
+  h2:
+    tcp:
+      port: 9092
+      enabled: true
+    web:
+      port: 8082
+      enabled: true
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+

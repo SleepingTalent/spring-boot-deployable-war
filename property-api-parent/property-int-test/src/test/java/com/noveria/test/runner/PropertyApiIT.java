@@ -5,7 +5,7 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(format={"pretty","html:target/cucumber-report","json:target/cucumber-report/result.json"}, glue="com.noveria.test",
+@CucumberOptions(format={"pretty","html:target/cucumber-report","json:target/cucumber-report/result.json"}, glue={"com.noveria.test","org.cukesalad"},
         features="classpath:features", tags={"~@wip"}, monochrome = true)
 public class PropertyApiIT {
 

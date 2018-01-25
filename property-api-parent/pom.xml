@@ -23,4 +23,16 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>h2-database</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <spring.profile>h2</spring.profile>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>
